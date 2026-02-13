@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data</title>
+</head>
+<body>
+    <h1>Student Data</h1>
+    {% for student in students %}
+        <p>Roll Number: {{ student.roll_no }}</p>
+        <p>Email: {{ student.email }}</p>
+        <img src="{{ student.photo.url }}" alt="Student Photo" width="100">
+        <p>Name: {{ student.name }}</p>
+        <p>Branch: {{ student.branch }}</p>
+        <hr>
+    {% endfor %}
+</body>
