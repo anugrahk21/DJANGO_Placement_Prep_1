@@ -20,15 +20,31 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Root URL configuration (project-level).
+#
+# Django checks URL patterns from top to bottom.
+# - The first matching pattern is used.
+# - path('', include('app.urls')) means "try app URLs for any incoming path"
+#   at that point in the order. If app has no match, Django continues below.
+
 urlpatterns = [
+    # Django admin panel (uses admin site routing, not app/views.py).
     path('admin/', admin.site.urls),
-    path('',views.home, name ="home"), # Home page because path is '' . If we put path('home/', views.home, name="home"), then the home page will be at http://localhost:8000/home/ instead of http://localhost:8000/ . So we use path('', views.home, name="home") to make the home page at http://localhost:8000/ .
-    path('', include("app.urls")), # If we don't include this, then the urls in app/urls.py won't work django will only look for urls in djangoproject/urls.py
-                                   # So we include the urls in app/urls.py by using path('', include("app.urls")) . This means that any url that starts with '' (which is all urls) will be handled by the urls in app/urls.py . So if we have path('login/', views.login, name="login") in app/urls.py , then the url http://localhost:8000/login/ will be handled by the login view in app/views.py .
-                                   # If we have path('input/', views.input_data, name="input_data") in app/urls.py , then the url http://localhost:8000/input/ will be handled by the input_data view in app/views.py .
+    # Home page at '/'.
+    path('', views.home, name="home"),
+
+    # Include app-level URLs.
+    # Example: if app/urls.py had path('about/', ...), '/about/' would be resolved there.
+    # Current app/urls.py is intentionally minimal, so project-level routes below still handle requests.
+    path('', include("app.urls")),
+
+    # Project-level routes currently used by templates.
     path('login/', views.login, name="login"),
-    path('input/', views.input_data, name="input_data")   
+    path('input/', views.input_data, name="input_data"),
+    path('student/', views.student_data, name="student_data"),
 ]
 
+# During development, serve uploaded media files through Django.
+# In production, media should be served by a web server or cloud storage.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
