@@ -14,6 +14,7 @@ class Student(models.Model):
 
     roll_no = models.IntegerField(primary_key=True)
     email = models.EmailField(unique=True)
+    photo = models.ImageField(upload_to='photos/', null=True, blank=True)
     name = models.CharField(max_length=200)
     branch = models.CharField(max_length=3, choices=BRANCH_CHOICES)
 
