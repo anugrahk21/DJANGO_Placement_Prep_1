@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Input Data</title>
+</head>
+
+<body>
+    <h2>Enter the Student Data</h2>
+    <form action="/data" method="post" enctype="multipart/form-data">
+        <label for="roll_no">Roll Number:</label><br>
+        <input type="number" id="roll_no" name="roll_no" placeholder="Enter your Roll Number" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your Email" required><br><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" min="1" placeholder="Enter your Name" required><br><br>
+
+        <label for="branch">Choose a Branch:</label>
+            <select name="branch" id="branch">
+            <option value="cse">Computer Science</option>
+            <option value="ece">Electrical</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+            <option value="eee">Electrical</option>
+        </select><br><br>
+
+
+        <button type="submit">Submit</button>
+</body>
+
+</html>
