@@ -9,7 +9,13 @@
 
 <body>
     <h2>Enter the Student Data</h2>
-    <form action="/data" method="post" enctype="multipart/form-data" onsubmit="alert('Data Submitted');">
+    <!-- 
+        1. action="": Posts to the same URL that rendered the page. 
+        2. {% csrf_token %}: Required by Django for security. 
+    -->
+    <form action="" method="post" enctype="multipart/form-data" onsubmit="alert('Data Submitted');">
+        {% csrf_token %}
+
         <label for="roll_no">Roll Number:</label><br>
         <input type="number" id="roll_no" name="roll_no" placeholder="Enter your Roll Number" required><br><br>
 
@@ -32,7 +38,10 @@
         </select><br><br>
 
 
-        <button type="submit">Submit</button>
+        <button type="submit">Submit</button><br><br>
+    </form>
+
+    <a href='/student'>View All Students Data</a> &nbsp; <a href='/'>Go to Home</a>
 </body>
 
 </html>
