@@ -7,8 +7,9 @@
 </head>
 <body>
     <h1>Student Data</h1>
-    {% for student in students %}
-        <p>Roll Number: {{ student.roll_no }}</p>
+    <a href='/input'>Go Back to Input Form</a> &nbsp; <a href='/'>Go to Home</a><br><br>
+    {% for student in students %} <!-- Loop through each student in the students list -->
+        <p>Roll Number: {{ student.roll_no }}</p> <!-- Display the details using the student object -->
         <p>Email: {{ student.email }}</p>
         <img src="{{ student.photo.url }}" alt="Student Photo" width="100">
         <p>Name: {{ student.name }}</p>
