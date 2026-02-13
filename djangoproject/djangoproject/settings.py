@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,12 +32,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Default Django apps.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Your custom app.
+    # Needed so Django can discover:
+    # - models (Student)
+    # - admin registrations (StudentAdmin)
+    # - migrations under app/migrations
     'app'
 ]
 
@@ -55,6 +63,10 @@ ROOT_URLCONF = 'djangoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # Project-level templates directory.
+        # Current folder in your repo is 'Templates' (capital T). On Windows,
+        # this often still works, but on Linux/macOS this can fail if case differs.
+        # Safer option in cross-platform projects: BASE_DIR / 'Templates'
         'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -122,7 +134,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Media files (user uploads like Student photo).
+# MEDIA_URL: browser URL prefix to access uploaded files.
+# MEDIA_ROOT: actual folder on disk where uploads are stored.
+# os.path.join(BASE_DIR, 'media') resolves to <project_root>/media
+MEDIA_URL = '/media/' # URL prefix for media files (e.g., /media/photos/101.jpg)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Folder where uploaded media files are saved (e.g., <project_root>/media/photos/101.jpg)
