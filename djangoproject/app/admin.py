@@ -3,6 +3,6 @@ from .models import Student
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('roll_no', 'name', 'email', 'branch')
+    list_display = ('roll_no', 'email', 'photo', 'name', 'branch')
     
 
