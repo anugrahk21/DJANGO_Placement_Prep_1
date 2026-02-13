@@ -1,16 +1,20 @@
 from django.shortcuts import render
 from .models import Student
 
-# Create your views here.
-def home(request):
-    return render(request, "home.html")
+# App-level views.
+#
+# This file is optional in your current setup because project-level views
+# (djangoproject/views.py) are handling active routes.
+#
+# Add view functions here when app/urls.py starts owning URLs.
 
-def login(request):
-    return render(request,"login.html")
+# Example view (disabled):
+# def about(request):
+#     return render(request, 'about.html')
 
-def input_data(request):
-    return render(request,"input.html")
+# Example data view (disabled):
+# def student_list(request):
+#     students = Student.objects.all()
+#     return render(request, 'student.html', {'students': students})
 
-def student_data(request):
-    students = Student.objects.all()
-    return render(request,'student.html', {'students': students})
+
